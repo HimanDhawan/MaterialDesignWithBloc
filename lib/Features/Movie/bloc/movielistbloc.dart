@@ -19,11 +19,9 @@ class MovieListBloc extends Bloc<MovieListEvent, MovieListState> {
       emit(state.copyWith(status: MovieListStatus.loading));
 
       final Item item = await movieRepository.fetchAllMovies();
-
-      emit(state.copyWith(
-          movies: item.results,
-          idSelected: 0,
-          status: MovieListStatus.success));
+      var newstate = state.copyWith(
+          movies: item.results, idSelected: 0, status: MovieListStatus.success);
+      emit(newstate);
     } catch (error, stacktrace) {
       emit(state.copyWith(status: MovieListStatus.failure));
     }

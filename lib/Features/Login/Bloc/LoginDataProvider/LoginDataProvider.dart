@@ -12,13 +12,13 @@ class LoginDataProvider {
 
   Future<Session> login(String username, String password) async {
     print("LoginDataProvider login");
-    RequestTokenModel requestToken =
+    final RequestTokenModel requestToken =
         await createRequestToken(username, password);
     print("requestToken" + requestToken.requestToken);
-    SessionWithLoginPassWordTokenModel loginPasswordModel =
+    final SessionWithLoginPassWordTokenModel loginPasswordModel =
         await loginWithUserNameAndPassword(
             username, password, requestToken.requestToken);
-    Session session = await createSession(
+    final Session session = await createSession(
         username, password, loginPasswordModel.requestToken);
     return session;
   }

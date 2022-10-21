@@ -17,11 +17,7 @@ class MovieScreen extends StatefulWidget {
 class _MovieScreen extends State<MovieScreen> {
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(providers: [
-      BlocProvider<MovieListBloc>(
-        create: (context) => MovieListBloc(movieRepository: Repository()),
-      )
-    ], child: getMovieScreen());
+    return getMovieScreen();
   }
 
   Widget getMovieScreen() {

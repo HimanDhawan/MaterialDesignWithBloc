@@ -6,6 +6,5 @@ abstract class CreatedListEvent extends Equatable {
 }
 
 class GetCreatedListEvent extends CreatedListEvent {
-  final String session;
-  GetCreatedListEvent({required this.session});
+  GetCreatedListEvent();
 }

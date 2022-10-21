@@ -9,19 +9,39 @@
 
 import 'package:equatable/equatable.dart';
 
-class CreatedListModel extends Equatable {
+class CreatedMovieList extends Equatable {
+  final int page;
+  final List<CreatedMovieResult> results;
+
+  CreatedMovieList(this.page, this.results);
+
+  factory CreatedMovieList.fromJson(Map<String, dynamic> json) {
+    List<CreatedMovieResult> resultModelList = [];
+    for (var result in json["results"]) {
+      CreatedMovieResult resultModel = CreatedMovieResult.fromJson(result);
+      resultModelList.add(resultModel);
+    }
+
+    return CreatedMovieList(json["page"], resultModelList);
+  }
+
+  @override
+  List<Object?> get props => [];
+}
+
+class CreatedMovieResult extends Equatable {
   final String description;
   final int id;
   final int itemCount;
   final String name;
   final String? posterPath;
 
-  CreatedListModel(
+  CreatedMovieResult(
       this.description, this.id, this.itemCount, this.name, this.posterPath);
 
-  factory CreatedListModel.fromJson(Map<String, dynamic> json) {
-    return CreatedListModel(json["description"], json["id"], json["item_count"],
-        json["name"], json["poster_path"]);
+  factory CreatedMovieResult.fromJson(Map<String, dynamic> json) {
+    return CreatedMovieResult(json["description"], json["id"],
+        json["item_count"], json["name"], json["poster_path"]);
   }
 
   @override

@@ -3,8 +3,14 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
+import '../Model/CreatedListModel.dart';
+
 class CreatedListCell extends StatelessWidget {
-  const CreatedListCell({Key? key}) : super(key: key);
+  final CreatedMovieResult movie;
+  const CreatedListCell({
+    Key? key,
+    required this.movie,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,16 +21,16 @@ class CreatedListCell extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Title",
+              movie.name,
               textAlign: TextAlign.left,
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
             ),
             Text(
-              "Overview",
+              movie.description,
               textAlign: TextAlign.left,
               style: TextStyle(fontStyle: FontStyle.italic),
             ),
-            Text("Number of movies",
+            Text(movie.itemCount.toString(),
                 textAlign: TextAlign.left,
                 style: TextStyle(fontStyle: FontStyle.italic)),
           ],
